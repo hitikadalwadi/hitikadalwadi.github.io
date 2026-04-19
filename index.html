@@ -90,7 +90,7 @@
     color: var(--purple);
   }
 
-  .nav-logo span { font-style: italic; font-weight: 400; }
+  .nav-logo span { font-weight: 400; }
 
   .nav-links {
     display: flex;
@@ -195,11 +195,8 @@
   }
 
   .hero h1 .line2 {
-    font-style: italic;
-    font-family: var(--font-italic);
     font-weight: 700;
     animation-delay: 0.35s;
-    padding-left: 0.04em;
   }
 
   .hero h1 .dot-end {
@@ -221,10 +218,9 @@
   }
 
   .hero-tagline em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-weight: 500;
     color: var(--purple);
-    font-size: 1.08em;
+    font-style: normal;
   }
 
   .hero-ctas {
@@ -342,8 +338,7 @@
   }
 
   .section-title em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
   }
 
@@ -375,8 +370,7 @@
   }
 
   .about-lead em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
   }
 
@@ -470,8 +464,7 @@
   }
 
   .exp-main h3 em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 400;
     color: var(--purple-mid);
     font-size: 0.85em;
@@ -602,8 +595,7 @@
   .project-featured h3 { font-size: 36px; }
 
   .project h3 em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 400;
   }
 
@@ -681,8 +673,7 @@
   }
 
   .writing-intro h3 em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
   }
 
@@ -733,8 +724,7 @@
   }
 
   .post h4 em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
   }
 
@@ -760,55 +750,53 @@
   }
 
   /* ───────────── SKILLS ───────────── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-  }
-
-  .skill-group {
-    background: var(--cream);
-    padding: 32px 28px;
-    min-height: 220px;
-    transition: background 0.3s;
-  }
-
-  .skill-group:hover { background: var(--cream-warm); }
-
-  .skill-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .skill-list {
-    list-style: none;
+  .skills-rows {
     display: flex;
     flex-direction: column;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .skill-row:last-child { border-bottom: 1px solid var(--line); }
+
+  .skill-category {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
-  .skill-list li {
-    font-family: var(--font-display);
-    font-size: 15px;
+  .skill-pill {
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: var(--cream-warm);
+    border: 1px solid var(--line);
     color: var(--purple);
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
+    transition: all 0.25s ease;
   }
 
-  .skill-list li em {
-    font-family: var(--font-italic);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--purple-mid);
+  .skill-pill:hover {
+    background: var(--purple);
+    color: var(--cream);
+    border-color: var(--purple);
+    transform: translateY(-2px);
   }
 
   /* ───────────── CONTACT / FOOTER ───────────── */
@@ -828,8 +816,7 @@
   }
 
   .contact-huge em {
-    font-family: var(--font-italic);
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
   }
 
@@ -917,7 +904,7 @@
     .project-featured, .project-half, .project-third { grid-column: span 1; min-height: auto; }
     .writing-wrap { grid-template-columns: 1fr; gap: 48px; }
     .writing-intro { position: static; }
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-rows .skill-row { grid-template-columns: 1fr; gap: 14px; padding: 22px 0; }
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
     .exp-period { padding-top: 0; }
     .exp-arrow { display: none; }
@@ -935,7 +922,6 @@
     .nav-links { display: none; }
     .nav-logo { font-size: 15px; }
     .about-facts { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -957,22 +943,18 @@
 <header class="hero">
   <div class="hero-decoration"></div>
   <div class="container hero-content">
-    <div class="hero-meta">
-      <span class="dot"></span>
-      <span>Available May – Dec 2026 · Internship / Co-op</span>
-    </div>
     <h1>
-      <span class="line1">hitika</span>
-      <span class="line2">dalwadi<span class="dot-end">.</span></span>
+      <span class="line1">Hitika</span>
+      <span class="line2">Dalwadi<span class="dot-end">.</span></span>
     </h1>
     <p class="hero-tagline">
-      [ YOUR TAGLINE HERE — e.g. <em>AI Engineer</em> building responsible, production-grade ML systems at the intersection of governance, retrieval, and applied research. ]
+      [ AI/ML Engineer | Master's in Artificial Intelligence | Ex-ZS | Ex-ISRO ]
     </p>
     <div class="hero-ctas">
       <a href="#work" class="btn btn-primary">
         See selected work <span class="arrow">→</span>
       </a>
-      <a href="mailto:your.email@northeastern.edu" class="btn btn-secondary">
+      <a href="mailto:dalwadi.hi@northeastern.edu" class="btn btn-secondary">
         Get in touch
       </a>
     </div>
@@ -992,37 +974,16 @@
     <div class="about-grid">
       <div>
         <p class="about-lead">
-          I'm a graduate researcher at <em>Northeastern</em>, building AI systems that are accurate, auditable, and genuinely useful.
+          An AI/ML Engineer working towards building <em>Responsible and Efficient AI</em> systems.
         </p>
       </div>
       <div class="about-body">
         <p>
-          Currently pursuing an MS in Artificial Intelligence at Khoury College of Computer Sciences, graduating December 2027. Before Northeastern, I spent two-plus years at ZS Associates as a Data Solutions Engineer, building ETL pipelines across 80+ healthcare data sources and working with Salesforce Data Cloud on identity resolution and CRM unification.
+          I believe AI can absorb a lot of mundane work and allow us to focus on complex problems solving, but that promise only holds if we can audit what these systems produce at every step and understand the consequences of their outputs. Recently, my team and I won the Red Hat and Open Accelerator Hackathon where we built a MCP governance system that inspects incoming request. That pushed me further, and I have since built a prompt injection detecting system using NLP techniques.
         </p>
         <p>
-          My current focus sits at the intersection of retrieval-augmented generation, agent governance, and algorithmic fairness. I won the Most Innovative Use of MCP at the Red Hat × IBM hackathon for Sentinel, an AI agent governance system, and placed second at a Google DeepMind × Cactus hackathon for a hybrid local/cloud inference routing system.
+           I bring a strong technical foundation, a security-first mindset, and experience handling complex data at scale. Alongside my work in healthcare CRM, I have gained exposure to research and problem-solving through a research internship at ISRO (Indian Space Research Organisation).  I regularly read technical blogs and podcasts to stay current with the evolving landscape of AI and data systems. To document and reflect on my learning, I maintain a Substack where I share insights and practical takeaways .
         </p>
-        <p>
-          I also <a href="#writing">write on Substack</a> about ML concepts and what I'm learning, and I care a lot about making technical work legible to people outside the field.
-        </p>
-
-        <div class="about-facts">
-          <div>
-            <div class="fact-label">Based in</div>
-            <div class="fact-value">Boston, MA</div>
-          </div>
-          <div>
-            <div class="fact-label">Graduating</div>
-            <div class="fact-value">December 2027</div>
-          </div>
-          <div>
-            <div class="fact-label">Focus</div>
-            <div class="fact-value">Applied ML · RAG · Governance</div>
-          </div>
-          <div>
-            <div class="fact-label">Open to</div>
-            <div class="fact-value">Internship / Co-op</div>
-          </div>
         </div>
       </div>
     </div>
@@ -1129,8 +1090,8 @@
         </div>
       </a>
 
-      <!-- Half: Bias Audit -->
-      <a class="project project-half" href="#">
+      <!-- Third: Bias Audit -->
+      <a class="project project-third" href="#">
         <div class="project-meta">
           <span>Fairness · 2026</span>
         </div>
@@ -1165,8 +1126,8 @@
         </div>
       </a>
 
-      <!-- Third: RAG Study Assistant -->
-      <a class="project project-third" href="#">
+      <!-- Half: RAG Study Assistant -->
+      <a class="project project-half" href="#">
         <div class="project-meta">
           <span>RAG · 2025</span>
         </div>
@@ -1178,39 +1139,6 @@
         <div class="project-stack">
           <span class="stack-pill">LangChain</span>
           <span class="stack-pill">Pinecone</span>
-        </div>
-      </a>
-
-      <!-- Third: FlatLocal -->
-      <a class="project project-third" href="#">
-        <div class="project-meta">
-          <span>Hackathon · 2025</span>
-          <span class="project-badge">2nd Place</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>FlatLocal<em> — hybrid routing</em></h3>
-        <p>
-          Apartment search agent with local/cloud inference routing using FunctionGemma. DeepMind × Cactus hackathon.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">Gemma</span>
-          <span class="stack-pill">Agents</span>
-        </div>
-      </a>
-
-      <!-- Third: StackGuard -->
-      <a class="project project-third" href="#">
-        <div class="project-meta">
-          <span>Security · 2025</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>StackGuard<em> — CI/CD</em></h3>
-        <p>
-          Multi-agent vulnerability impact analysis tool for CI/CD pipelines. Built at the GitLab AI Hackathon.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">Multi-agent</span>
-          <span class="stack-pill">CI/CD</span>
         </div>
       </a>
 
