@@ -414,132 +414,62 @@
     letter-spacing: -0.005em;
   }
 
-  /* ───────────── EXPERIENCE ───────────── */
-  .experience-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 180px 1fr auto;
-    gap: 40px;
-    padding: 40px 0;
-    border-top: 1px solid var(--line);
+  /* ───────────── PROJECTS (horizontal scroll) ───────────── */
+  .projects-scroll-wrap {
     position: relative;
-    transition: padding 0.4s;
+    margin: 0 -48px;
+    padding: 0 48px;
   }
 
-  .exp-item:last-child { border-bottom: 1px solid var(--line); }
-
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--purple);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
-  }
-
-  .exp-item:hover::before { transform: scaleX(1); }
-  .exp-item:hover { padding-left: 12px; }
-
-  .exp-period {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    padding-top: 6px;
-  }
-
-  .exp-main h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 24px;
-    color: var(--purple);
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
-  }
-
-  .exp-main h3 em {
-    font-style: normal;
-    font-weight: 400;
-    color: var(--purple-mid);
-    font-size: 0.85em;
-    margin-left: 8px;
-  }
-
-  .exp-role {
-    font-size: 14px;
-    color: var(--purple-mid);
-    margin-bottom: 14px;
-    font-family: var(--font-mono);
-    letter-spacing: 0.03em;
-  }
-
-  .exp-desc {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--purple-mid);
-    max-width: 560px;
-  }
-
-  .exp-tags {
+  .projects-scroll {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
-  }
-
-  .exp-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: rgba(42, 27, 74, 0.06);
-    color: var(--purple-mid);
-    text-transform: uppercase;
-  }
-
-  .exp-arrow {
-    font-family: var(--font-display);
-    font-size: 24px;
-    color: var(--purple);
-    padding-top: 6px;
-    opacity: 0.3;
-    transition: all 0.3s;
-  }
-
-  .exp-item:hover .exp-arrow {
-    opacity: 1;
-    transform: translateX(6px);
-  }
-
-  /* ───────────── PROJECTS ───────────── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
     gap: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 48px 40px 0;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 48px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple-soft) var(--cream-deep);
+  }
+
+  .projects-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+  .projects-scroll::-webkit-scrollbar-track {
+    background: var(--cream-deep);
+    border-radius: 100px;
+  }
+  .projects-scroll::-webkit-scrollbar-thumb {
+    background: var(--purple-soft);
+    border-radius: 100px;
+  }
+  .projects-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
   }
 
   .project {
+    flex: 0 0 420px;
+    scroll-snap-align: start;
     background: var(--cream-warm);
     border-radius: 20px;
-    padding: 36px;
+    padding: 32px;
     position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    text-decoration: none;
   }
 
   .project:hover {
     background: var(--cream-deep);
     transform: translateY(-4px);
     border-color: var(--line-strong);
+    box-shadow: 0 12px 30px rgba(42, 27, 74, 0.08);
   }
 
   .project::after {
@@ -556,20 +486,18 @@
 
   .project:hover::after { opacity: 1; }
 
-  .project-featured { grid-column: span 4; min-height: 340px; }
-  .project-half { grid-column: span 3; min-height: 280px; }
-  .project-third { grid-column: span 2; min-height: 260px; }
-
   .project-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
+    position: relative;
+    z-index: 2;
   }
 
   .project-badge {
@@ -583,36 +511,35 @@
   .project h3 {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 26px;
+    font-size: 24px;
     color: var(--purple);
     letter-spacing: -0.025em;
-    margin-bottom: 16px;
-    line-height: 1.15;
+    margin-bottom: 14px;
+    line-height: 1.2;
     position: relative;
     z-index: 2;
   }
 
-  .project-featured h3 { font-size: 36px; }
-
   .project h3 em {
     font-style: normal;
     font-weight: 400;
+    color: var(--purple-mid);
   }
 
   .project p {
     font-size: 14px;
     line-height: 1.6;
     color: var(--purple-mid);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 2;
+    flex-grow: 1;
   }
 
   .project-stack {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: auto;
     position: relative;
     z-index: 2;
   }
@@ -620,33 +547,251 @@
   .stack-pill {
     font-family: var(--font-mono);
     font-size: 10px;
-    padding: 3px 9px;
+    padding: 4px 10px;
     border: 1px solid var(--line-strong);
     border-radius: 100px;
     color: var(--purple-mid);
     letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .project-link {
     position: absolute;
     top: 28px; right: 28px;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: var(--cream);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
     color: var(--purple);
     transition: all 0.3s;
     z-index: 3;
+    font-size: 14px;
   }
 
   .project:hover .project-link {
     background: var(--purple);
     color: var(--cream);
     transform: rotate(-45deg);
+  }
+
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll-hint-line {
+    flex: 0 0 60px;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  /* ───────────── TIMELINE (experience + education tabs) ───────────── */
+  .timeline-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .timeline-tab {
+    background: transparent;
+    border: none;
+    padding: 16px 32px 16px 0;
+    margin-right: 32px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    position: relative;
+    letter-spacing: -0.01em;
+    transition: color 0.3s;
+  }
+
+  .timeline-tab:hover { color: var(--purple-mid); }
+
+  .timeline-tab.active {
+    color: var(--purple);
+    font-weight: 600;
+  }
+
+  .timeline-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 32px;
+    height: 2px;
+    background: var(--purple);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .timeline-tab.active::after { transform: scaleX(1); }
+
+  .timeline-tab-count {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    vertical-align: middle;
+    font-weight: 400;
+  }
+
+  .timeline-panel { display: none; }
+  .timeline-panel.active { display: block; animation: fadeInPanel 0.4s ease; }
+
+  @keyframes fadeInPanel {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 220px 60px 1fr;
+    gap: 0;
+    padding: 8px 0 48px;
+    position: relative;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--purple-mid);
+    letter-spacing: 0.04em;
+    text-align: right;
+    padding-right: 32px;
+    padding-top: 4px;
+    font-weight: 500;
+  }
+
+  .timeline-date-sub {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 11px;
+  }
+
+  .timeline-axis {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .timeline-axis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: -48px;
+    left: 50%;
+    width: 1px;
+    background: var(--line-strong);
+    transform: translateX(-0.5px);
+  }
+
+  .timeline-item:last-child .timeline-axis::before { bottom: 0; height: 20px; }
+
+  .timeline-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--purple);
+    position: relative;
+    z-index: 2;
+    margin-top: 6px;
+    transition: all 0.3s;
+  }
+
+  .timeline-item:hover .timeline-dot {
+    background: var(--purple);
+    transform: scale(1.15);
+  }
+
+  .timeline-content {
+    padding-left: 0;
+  }
+
+  .timeline-content h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--purple);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .timeline-content h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .timeline-content h3 a:hover { border-bottom-color: var(--purple); }
+
+  .timeline-content h3 .arrow-out {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--purple-mid);
+    transition: transform 0.2s;
+  }
+
+  .timeline-content h3 a:hover .arrow-out { transform: translate(3px, -3px); }
+
+  .timeline-role {
+    font-size: 14px;
+    color: var(--purple-mid);
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+
+  .timeline-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--purple-mid);
+    max-width: 640px;
+    margin-bottom: 14px;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .timeline-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(42, 27, 74, 0.06);
+    color: var(--purple-mid);
+    text-transform: uppercase;
   }
 
   /* ───────────── WRITING / SUBSTACK ───────────── */
@@ -900,14 +1045,16 @@
     .container, nav { padding: 22px 28px; }
     .container { padding: 0 28px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-featured, .project-half, .project-third { grid-column: span 1; min-height: auto; }
+    .projects-scroll-wrap { margin: 0 -28px; padding: 0 28px; }
+    .projects-scroll { scroll-padding-left: 28px; padding-right: 28px; }
+    .project { flex: 0 0 340px; min-height: 320px; padding: 26px; }
     .writing-wrap { grid-template-columns: 1fr; gap: 48px; }
     .writing-intro { position: static; }
     .skills-rows .skill-row { grid-template-columns: 1fr; gap: 14px; padding: 22px 0; }
-    .exp-item { grid-template-columns: 1fr; gap: 12px; }
-    .exp-period { padding-top: 0; }
-    .exp-arrow { display: none; }
+    .timeline-item { grid-template-columns: 40px 1fr; gap: 20px; padding-bottom: 40px; }
+    .timeline-date { grid-column: 2; text-align: left; padding-right: 0; padding-top: 0; margin-bottom: 6px; order: -1; }
+    .timeline-axis { grid-row: 1 / 3; }
+    .timeline-content { grid-column: 2; }
     .post { grid-template-columns: 1fr auto; gap: 16px; }
     .post-num { display: none; }
     .nav-links { gap: 20px; }
@@ -922,6 +1069,8 @@
     .nav-links { display: none; }
     .nav-logo { font-size: 15px; }
     .about-facts { grid-template-columns: 1fr; }
+    .project { flex: 0 0 280px; }
+    .timeline-tab { font-size: 16px; padding: 14px 20px 14px 0; margin-right: 20px; }
   }
 </style>
 </head>
@@ -931,7 +1080,7 @@
   <div class="nav-logo">hitika <span>dalwadi</span></div>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
-    <li><a href="#experience">experience</a></li>
+    <li><a href="#experience">journey</a></li>
     <li><a href="#work">work</a></li>
     <li><a href="#writing">writing</a></li>
     <li><a href="#skills">skills</a></li>
@@ -990,159 +1139,238 @@
   </div>
 </section>
 
-<!-- ───────────── EXPERIENCE ───────────── -->
+<!-- ───────────── EXPERIENCE + EDUCATION ───────────── -->
 <section id="experience">
   <div class="container">
     <div class="section-header">
       <span class="section-number">02 /</span>
-      <h2 class="section-title"><em>experience</em>.</h2>
-      <span class="section-kicker">Where I've been</span>
+      <h2 class="section-title">journey.</h2>
+      <span class="section-kicker">Experience & education</span>
     </div>
 
-    <div class="experience-list">
-
-      <div class="exp-item">
-        <div class="exp-period">2025 — present</div>
-        <div class="exp-main">
-          <h3>Northeastern University <em>— Khoury College</em></h3>
-          <div class="exp-role">Graduate Researcher · MS Artificial Intelligence</div>
-          <p class="exp-desc">
-            Graduate coursework and research across machine learning, pattern recognition, and applied data processing. Building projects at the intersection of RAG systems, algorithmic fairness, and agent governance.
-          </p>
-          <div class="exp-tags">
-            <span class="exp-tag">ML</span>
-            <span class="exp-tag">RAG</span>
-            <span class="exp-tag">Fairness</span>
-            <span class="exp-tag">Research</span>
-          </div>
-        </div>
-        <div class="exp-arrow">→</div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-period">2022 — 2024</div>
-        <div class="exp-main">
-          <h3>ZS Associates <em>— Data Solutions</em></h3>
-          <div class="exp-role">Data Solutions Engineer</div>
-          <p class="exp-desc">
-            Built and maintained ETL pipelines across 80+ healthcare data sources for pharma and life sciences clients. Worked on Salesforce Data Cloud for identity resolution and CRM unification, stakeholder walkthroughs, and data quality documentation.
-          </p>
-          <div class="exp-tags">
-            <span class="exp-tag">ETL</span>
-            <span class="exp-tag">Salesforce Data Cloud</span>
-            <span class="exp-tag">SQL</span>
-            <span class="exp-tag">Python</span>
-          </div>
-        </div>
-        <div class="exp-arrow">→</div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-period">2021 — 2022</div>
-        <div class="exp-main">
-          <h3>Confluence Lab <em>— BIT Research</em></h3>
-          <div class="exp-role">Research Intern · Computer Vision</div>
-          <p class="exp-desc">
-            Research internship focused on CNN-based semantic segmentation for surgical instrument detection. Also co-authored a paper on MQTT-based multi-robot coordination, published by Springer in 2022.
-          </p>
-          <div class="exp-tags">
-            <span class="exp-tag">CNNs</span>
-            <span class="exp-tag">Semantic Segmentation</span>
-            <span class="exp-tag">PyTorch</span>
-            <span class="exp-tag">Published</span>
-          </div>
-        </div>
-        <div class="exp-arrow">→</div>
-      </div>
-
+    <div class="timeline-tabs" role="tablist">
+      <button class="timeline-tab active" data-target="panel-experience" role="tab" aria-selected="true">
+        Experience <span class="timeline-tab-count">03</span>
+      </button>
+      <button class="timeline-tab" data-target="panel-education" role="tab" aria-selected="false">
+        Education <span class="timeline-tab-count">02</span>
+      </button>
     </div>
+
+    <!-- EXPERIENCE PANEL -->
+    <div class="timeline-panel active" id="panel-experience" role="tabpanel">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            Jan 2025 — Present
+            <span class="timeline-date-sub">Graduate Researcher</span>
+          </div>
+          <div class="timeline-axis"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <h3><a href="https://www.khoury.northeastern.edu/" target="_blank" rel="noopener">Northeastern University<span class="arrow-out">↗</span></a></h3>
+            <div class="timeline-role">MS Artificial Intelligence · Khoury College</div>
+            <p class="timeline-desc">
+              Graduate coursework and research across machine learning, pattern recognition, and applied data processing. Building projects at the intersection of RAG systems, algorithmic fairness, and agent governance.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Applied ML</span>
+              <span class="timeline-tag">RAG</span>
+              <span class="timeline-tag">Fairness</span>
+              <span class="timeline-tag">Research</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            2022 — 2024
+            <span class="timeline-date-sub">Data Solutions Engineer</span>
+          </div>
+          <div class="timeline-axis"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <h3><a href="https://www.zs.com/" target="_blank" rel="noopener">ZS Associates<span class="arrow-out">↗</span></a></h3>
+            <div class="timeline-role">Data Solutions Engineer · Healthcare & Life Sciences</div>
+            <p class="timeline-desc">
+              Built and maintained ETL pipelines across 80+ healthcare data sources for pharma and life sciences clients. Worked on Salesforce Data Cloud for identity resolution and CRM unification, led stakeholder walkthroughs, and owned data quality documentation.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">ETL</span>
+              <span class="timeline-tag">Salesforce Data Cloud</span>
+              <span class="timeline-tag">SQL</span>
+              <span class="timeline-tag">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            2021 — 2022
+            <span class="timeline-date-sub">Research Intern</span>
+          </div>
+          <div class="timeline-axis"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <h3><a href="#" target="_blank" rel="noopener">Confluence Lab, BIT<span class="arrow-out">↗</span></a></h3>
+            <div class="timeline-role">Research Intern · Computer Vision</div>
+            <p class="timeline-desc">
+              Research internship focused on CNN-based semantic segmentation for surgical instrument detection. Co-authored a paper on MQTT-based multi-robot coordination, published by Springer in 2022.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">CNNs</span>
+              <span class="timeline-tag">Semantic Segmentation</span>
+              <span class="timeline-tag">PyTorch</span>
+              <span class="timeline-tag">Published</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EDUCATION PANEL -->
+    <div class="timeline-panel" id="panel-education" role="tabpanel">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            2025 — 2027
+            <span class="timeline-date-sub">Graduating December 2027</span>
+          </div>
+          <div class="timeline-axis"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <h3><a href="https://www.khoury.northeastern.edu/" target="_blank" rel="noopener">Northeastern University<span class="arrow-out">↗</span></a></h3>
+            <div class="timeline-role">MS Artificial Intelligence · Khoury College of Computer Sciences</div>
+            <p class="timeline-desc">
+              Coursework in Intro to Machine Learning & Pattern Recognition (EECE 5644), Applied Data Processing for AI (CS 5130), algorithms, and applied data science. Projects on algorithmic fairness auditing, RAG pipelines, and agent governance.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Machine Learning</span>
+              <span class="timeline-tag">Pattern Recognition</span>
+              <span class="timeline-tag">Applied Data</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            2018 — 2022
+            <span class="timeline-date-sub">Undergraduate</span>
+          </div>
+          <div class="timeline-axis"><div class="timeline-dot"></div></div>
+          <div class="timeline-content">
+            <h3><a href="#" target="_blank" rel="noopener">Birla Institute of Technology<span class="arrow-out">↗</span></a></h3>
+            <div class="timeline-role">B.Tech · Computer Science Engineering</div>
+            <p class="timeline-desc">
+              Foundations in computer science, algorithms, and systems. Active in competitive robotics and co-authored a Springer-published paper on MQTT-based multi-robot coordination during an undergraduate research internship.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Algorithms</span>
+              <span class="timeline-tag">Robotics</span>
+              <span class="timeline-tag">Published Research</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ───────────── PROJECTS ───────────── -->
+<!-- ───────────── PROJECTS (horizontal scroll) ───────────── -->
 <section id="work">
   <div class="container">
     <div class="section-header">
       <span class="section-number">03 /</span>
-      <h2 class="section-title">selected <em>work</em></h2>
-      <span class="section-kicker">Things I've built</span>
+      <h2 class="section-title">selected work.</h2>
+      <span class="section-kicker">Drag or scroll →</span>
     </div>
 
-    <div class="projects-grid">
+    <div class="projects-scroll-wrap">
+      <div class="projects-scroll">
 
-      <!-- Featured: Sentinel -->
-      <a class="project project-featured" href="#">
-        <div class="project-meta">
-          <span>AI Governance · 2025</span>
-          <span class="project-badge">Hackathon Winner</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>Sentinel<em> — AI Agent Governance</em></h3>
-        <p>
-          A B2B governance gateway for AI agents built on the Model Context Protocol. Reverse proxy and JSON-RPC 2.0 design with threat modeling for prompt injection, tool shadowing, and privilege escalation. Won Most Innovative Use of MCP at Red Hat × IBM.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">MCP</span>
-          <span class="stack-pill">Python</span>
-          <span class="stack-pill">JSON-RPC</span>
-          <span class="stack-pill">NIST/OWASP</span>
-          <span class="stack-pill">Threat Modeling</span>
-        </div>
-      </a>
+        <!-- Sentinel -->
+        <a class="project" href="#">
+          <div class="project-meta">
+            <span>AI Governance · 2025</span>
+            <span class="project-badge">Hackathon Winner</span>
+          </div>
+          <div class="project-link">↗</div>
+          <h3>Sentinel <em>— AI Agent Governance</em></h3>
+          <p>
+            A B2B governance gateway for AI agents built on the Model Context Protocol. Reverse proxy and JSON-RPC 2.0 design with threat modeling for prompt injection, tool shadowing, and privilege escalation. Won Most Innovative Use of MCP at Red Hat × IBM.
+          </p>
+          <div class="project-stack">
+            <span class="stack-pill">MCP</span>
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">JSON-RPC</span>
+            <span class="stack-pill">NIST/OWASP</span>
+            <span class="stack-pill">Threat Modeling</span>
+          </div>
+        </a>
 
-      <!-- Third: Bias Audit -->
-      <a class="project project-third" href="#">
-        <div class="project-meta">
-          <span>Fairness · 2026</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>Algorithmic <em>Bias Audit</em></h3>
-        <p>
-          Python pipeline scoring resumes via Gemini and Ollama/Qwen across demographic groups. Welch's t-test, Cohen's d, disparate impact ratios, and a five-page Streamlit dashboard. Null baseline fails the 4/5ths adverse impact rule.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">Gemini</span>
-          <span class="stack-pill">Ollama</span>
-          <span class="stack-pill">Streamlit</span>
-          <span class="stack-pill">SciPy</span>
-        </div>
-      </a>
+        <!-- Bias Audit -->
+        <a class="project" href="#">
+          <div class="project-meta">
+            <span>Fairness · 2026</span>
+          </div>
+          <div class="project-link">↗</div>
+          <h3>Algorithmic Bias Audit</h3>
+          <p>
+            Python pipeline scoring resumes via Gemini and Ollama/Qwen across demographic groups. Welch's t-test, Cohen's d, disparate impact ratios, and a five-page Streamlit dashboard. Null baseline fails the 4/5ths adverse impact rule.
+          </p>
+          <div class="project-stack">
+            <span class="stack-pill">Gemini</span>
+            <span class="stack-pill">Ollama</span>
+            <span class="stack-pill">Streamlit</span>
+            <span class="stack-pill">SciPy</span>
+          </div>
+        </a>
 
-      <!-- Half: Prompt Injection -->
-      <a class="project project-half" href="#">
-        <div class="project-meta">
-          <span>Security · 2025</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>Prompt Injection <em>Detection</em></h3>
-        <p>
-          Solo-built detection system using Sentence-BERT embeddings, ChromaDB, and distance-weighted KNN. t-SNE and UMAP visualizations surface cluster structure. Streamlit dashboard for analyst workflows.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">Sentence-BERT</span>
-          <span class="stack-pill">ChromaDB</span>
-          <span class="stack-pill">KNN</span>
-          <span class="stack-pill">UMAP</span>
-        </div>
-      </a>
+        <!-- Prompt Injection Detection -->
+        <a class="project" href="#">
+          <div class="project-meta">
+            <span>Security · 2025</span>
+          </div>
+          <div class="project-link">↗</div>
+          <h3>Prompt Injection Detection</h3>
+          <p>
+            Solo-built detection system using Sentence-BERT embeddings, ChromaDB, and distance-weighted KNN. t-SNE and UMAP visualizations surface cluster structure. Streamlit dashboard for analyst workflows.
+          </p>
+          <div class="project-stack">
+            <span class="stack-pill">Sentence-BERT</span>
+            <span class="stack-pill">ChromaDB</span>
+            <span class="stack-pill">KNN</span>
+            <span class="stack-pill">UMAP</span>
+          </div>
+        </a>
 
-      <!-- Half: RAG Study Assistant -->
-      <a class="project project-half" href="#">
-        <div class="project-meta">
-          <span>RAG · 2025</span>
-        </div>
-        <div class="project-link">↗</div>
-        <h3>RAG Study <em>Assistant</em></h3>
-        <p>
-          Retrieval-augmented study tool built on LangChain, Pinecone, and Gemini. Modernized to LCEL after debugging deprecated patterns.
-        </p>
-        <div class="project-stack">
-          <span class="stack-pill">LangChain</span>
-          <span class="stack-pill">Pinecone</span>
-        </div>
-      </a>
+        <!-- RAG Study Assistant -->
+        <a class="project" href="#">
+          <div class="project-meta">
+            <span>RAG · 2025</span>
+          </div>
+          <div class="project-link">↗</div>
+          <h3>RAG Study Assistant</h3>
+          <p>
+            Retrieval-augmented study tool built on LangChain, Pinecone, and Gemini. Modernized to LCEL after debugging deprecated patterns. Chunking strategies tuned for PDF and markdown academic content.
+          </p>
+          <div class="project-stack">
+            <span class="stack-pill">LangChain</span>
+            <span class="stack-pill">Pinecone</span>
+            <span class="stack-pill">Gemini</span>
+            <span class="stack-pill">LCEL</span>
+          </div>
+        </a>
 
+      </div>
+
+      <div class="scroll-hint">
+        <div class="scroll-hint-line"></div>
+        <span>Scroll horizontally →</span>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1214,96 +1442,96 @@
   <div class="container">
     <div class="section-header">
       <span class="section-number">05 /</span>
-      <h2 class="section-title">skills<em>.</em></h2>
+      <h2 class="section-title">skills.</h2>
       <span class="section-kicker">Tools & languages</span>
     </div>
 
-    <div class="skills-grid">
+    <div class="skills-rows">
 
-      <div class="skill-group">
-        <div class="skill-label">Languages</div>
-        <ul class="skill-list">
-          <li>Python</li>
-          <li>SQL</li>
-          <li>JavaScript</li>
-          <li>C++</li>
-          <li><em>LaTeX</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">LaTeX</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">ML & AI</div>
-        <ul class="skill-list">
-          <li>PyTorch</li>
-          <li>TensorFlow</li>
-          <li>LangChain</li>
-          <li>Hugging Face</li>
-          <li><em>scikit-learn</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">ML & AI</div>
+        <div class="skill-pills">
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">Hugging Face</span>
+          <span class="skill-pill">scikit-learn</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Retrieval & Agents</div>
-        <ul class="skill-list">
-          <li>RAG pipelines</li>
-          <li>Pinecone</li>
-          <li>ChromaDB</li>
-          <li>Sentence-BERT</li>
-          <li><em>MCP</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Retrieval & Agents</div>
+        <div class="skill-pills">
+          <span class="skill-pill">RAG pipelines</span>
+          <span class="skill-pill">Pinecone</span>
+          <span class="skill-pill">ChromaDB</span>
+          <span class="skill-pill">Sentence-BERT</span>
+          <span class="skill-pill">MCP</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Data & Cloud</div>
-        <ul class="skill-list">
-          <li>Salesforce Data Cloud</li>
-          <li>DuckDB</li>
-          <li>Snowflake</li>
-          <li>AWS</li>
-          <li><em>Airflow</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Data & Cloud</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Salesforce Data Cloud</span>
+          <span class="skill-pill">DuckDB</span>
+          <span class="skill-pill">Snowflake</span>
+          <span class="skill-pill">AWS</span>
+          <span class="skill-pill">Airflow</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Research Methods</div>
-        <ul class="skill-list">
-          <li>Statistical testing</li>
-          <li>Experimental design</li>
-          <li>Evaluation metrics</li>
-          <li><em>Threat modeling</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Research Methods</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Statistical testing</span>
+          <span class="skill-pill">Experimental design</span>
+          <span class="skill-pill">Evaluation metrics</span>
+          <span class="skill-pill">Threat modeling</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Interfaces</div>
-        <ul class="skill-list">
-          <li>Streamlit</li>
-          <li>React</li>
-          <li>FastAPI</li>
-          <li>ReportLab</li>
-          <li><em>Jupyter</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Interfaces</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Streamlit</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">ReportLab</span>
+          <span class="skill-pill">Jupyter</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Workflow</div>
-        <ul class="skill-list">
-          <li>Git · GitHub</li>
-          <li>Docker</li>
-          <li>Claude Code</li>
-          <li>CI/CD</li>
-          <li><em>Linux</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Workflow</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Git · GitHub</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Claude Code</span>
+          <span class="skill-pill">CI/CD</span>
+          <span class="skill-pill">Linux</span>
+        </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-label">Domains</div>
-        <ul class="skill-list">
-          <li>Healthcare data</li>
-          <li>Computer vision</li>
-          <li>AI governance</li>
-          <li><em>Fairness auditing</em></li>
-        </ul>
+      <div class="skill-row">
+        <div class="skill-category">Domains</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Healthcare data</span>
+          <span class="skill-pill">Computer vision</span>
+          <span class="skill-pill">AI governance</span>
+          <span class="skill-pill">Fairness auditing</span>
+        </div>
       </div>
 
     </div>
@@ -1362,6 +1590,36 @@
     s.classList.add('reveal');
     io.observe(s);
   });
+
+  // Timeline tabs (Experience / Education)
+  const tabs = document.querySelectorAll('.timeline-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      document.querySelectorAll('.timeline-panel').forEach(p => {
+        p.classList.toggle('active', p.id === target);
+      });
+    });
+  });
+
+  // Hide scroll hint once user has scrolled
+  const scroller = document.querySelector('.projects-scroll');
+  const hint = document.querySelector('.scroll-hint');
+  if (scroller && hint) {
+    scroller.addEventListener('scroll', () => {
+      if (scroller.scrollLeft > 40) hint.style.opacity = '0';
+      else hint.style.opacity = '1';
+    });
+    hint.style.transition = 'opacity 0.3s';
+  }
 </script>
 
 </body>
