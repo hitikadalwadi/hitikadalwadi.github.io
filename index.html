@@ -1125,6 +1125,22 @@
     .section-kicker { display: none; }
     .hero-decoration { width: 260px; height: 260px; right: -40px; top: 25%; }
   }
+  .nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--purple);
+  z-index: 210;
+  position: relative;
+ }
+
+.nav-toggle svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+ }
 
   @media (max-width: 600px) {
   .nav-logo { font-size: 15px; }
@@ -1170,22 +1186,7 @@
 
   .nav-overlay.open { opacity: 1; pointer-events: auto; }
 }
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  color: var(--purple);
-  z-index: 210;
-  position: relative;
-}
 
-.nav-toggle svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
 </style>
 </head>
 <body>
@@ -1207,8 +1208,8 @@
     <li><a href="#skills" onclick="closeMenu()">skills</a></li>
     <li><a href="#contact" onclick="closeMenu()">contact</a></li>
   </ul>
-  <div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
 </nav>
+<div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
 
 <!-- ───────────── HERO ───────────── -->
 <header class="hero">
