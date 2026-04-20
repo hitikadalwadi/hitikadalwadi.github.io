@@ -895,6 +895,7 @@
   }
 
   /* ───────────── SKILLS ───────────── */
+/* ───────────── SKILLS (corner brackets) ───────────── */
   .skills-rows {
     display: flex;
     flex-direction: column;
@@ -922,27 +923,86 @@
   .skill-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 14px;
   }
 
   .skill-pill {
-    padding: 8px 16px;
-    border-radius: 100px;
-    background: var(--cream-warm);
-    border: 1px solid var(--line);
-    color: var(--purple);
-    font-size: 13px;
+    position: relative;
+    cursor: default;
+    padding: 12px 22px;
+    text-align: center;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0;
-    transition: all 0.25s ease;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
   }
 
-  .skill-pill:hover {
-    background: var(--purple);
-    color: var(--cream);
-    border-color: var(--purple);
-    transform: translateY(-2px);
+  .skill-pill span {
+    position: absolute;
+    display: block;
+    transition: all 0.3s ease;
+    pointer-events: none;
   }
+
+  .skill-pill .label {
+    position: relative;
+    z-index: 2;
+  }
+
+  .skill-pill .shine {
+    left: -75%;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: rgba(139, 111, 212, 0.3);
+    transform: rotate(12deg);
+    filter: blur(12px);
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  }
+
+  .skill-pill:hover .shine { left: 125%; }
+
+  .skill-pill .c-tl {
+    width: 50%; height: 20%;
+    top: 0; left: 0;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+    border-radius: 8px 0 0 0;
+  }
+  .skill-pill .c-tr {
+    width: 50%; height: 60%;
+    top: 0; right: 0;
+    border-top: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    border-radius: 0 8px 0 0;
+  }
+  .skill-pill .c-bl {
+    width: 50%; height: 60%;
+    bottom: 0; left: 0;
+    border-bottom: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 0 0 8px;
+  }
+  .skill-pill .c-br {
+    width: 50%; height: 20%;
+    bottom: 0; right: 0;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    border-radius: 0 0 8px 0;
+  }
+
+  .skill-pill:hover .c-tr { height: 90%; }
+  .skill-pill:hover .c-bl { height: 90%; }
 
   /* ───────────── CONTACT / FOOTER ───────────── */
   .contact {
@@ -1404,10 +1464,13 @@
 </section>
 
 <!-- ───────────── SKILLS ───────────── -->
+<!-- ───────────── SKILLS ───────────── -->
 <section id="skills">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Skills.</h2>
+      <span class="section-number">05 /</span>
+      <h2 class="section-title">skills.</h2>
+      <span class="section-kicker">Tools I reach for</span>
     </div>
 
     <div class="skills-rows">
@@ -1415,54 +1478,54 @@
       <div class="skill-row">
         <div class="skill-category">Languages</div>
         <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">MATLAB</span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Python</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">SQL</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">MATLAB</span></span>
         </div>
       </div>
 
       <div class="skill-row">
         <div class="skill-category">ML & AI</div>
         <div class="skill-pills">
-          <span class="skill-pill">PyTorch</span>
-          <span class="skill-pill">TensorFlow</span>
-          <span class="skill-pill">LangChain</span>
-          <span class="skill-pill">Hugging Face</span>
-          <span class="skill-pill">scikit-learn</span>
-          <span class="skill-pill">LangGraph</span>
-          <span class="skill-pill">Hyperparameter Tuning</span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">PyTorch</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">TensorFlow</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">LangChain</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Hugging Face</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">scikit-learn</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">LangGraph</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Hyperparameter Tuning</span></span>
         </div>
       </div>
 
       <div class="skill-row">
         <div class="skill-category">Retrieval & Agents</div>
         <div class="skill-pills">
-          <span class="skill-pill">RAG pipelines</span>
-          <span class="skill-pill">Vector Database</span>
-          <span class="skill-pill">FastAPI</span>
-          <span class="skill-pill">Natural Language Processing</span>
-          <span class="skill-pill">Model Context Protocol</span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">RAG pipelines</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Vector Database</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">FastAPI</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Natural Language Processing</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Model Context Protocol</span></span>
         </div>
       </div>
 
       <div class="skill-row">
         <div class="skill-category">Data & Cloud</div>
         <div class="skill-pills">
-          <span class="skill-pill">Salesforce Data Cloud</span>
-          <span class="skill-pill">ETL Pipeline</span>
-          <span class="skill-pill">Snowflake</span>
-          <span class="skill-pill">AWS(S3 and Sagemaker)</span>
-          <span class="skill-pill">MLFlow</span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Salesforce Data Cloud</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">ETL Pipeline</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Snowflake</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">AWS (S3 and Sagemaker)</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">MLFlow</span></span>
         </div>
       </div>
 
       <div class="skill-row">
         <div class="skill-category">Workflow</div>
         <div class="skill-pills">
-          <span class="skill-pill">Git · GitHub</span>
-          <span class="skill-pill">Docker</span>
-          <span class="skill-pill">Claude Code</span>
-          <span class="skill-pill">CI/CD</span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Git · GitHub</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Docker</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">Claude Code</span></span>
+          <span class="skill-pill"><span class="shine"></span><span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span><span class="label">CI/CD</span></span>
         </div>
       </div>
 
