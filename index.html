@@ -1153,38 +1153,57 @@
 
   .nav-links {
     position: fixed;
-    top: 0; right: 0; bottom: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     width: 75%;
     max-width: 320px;
-    background: var(--cream);
+    background: #f4efe6;                /* solid cream, not transparent */
     flex-direction: column;
-    justify-content: center;
-    gap: 28px;
-    padding: 48px 32px;
+    justify-content: flex-start;        /* start from top, not center */
+    align-items: flex-start;
+    gap: 20px;
+    padding: 100px 32px 48px;           /* top padding pushes links below nav bar */
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    box-shadow: -12px 0 30px rgba(42, 27, 74, 0.1);
-    z-index: 200;
+    box-shadow: -12px 0 30px rgba(42, 27, 74, 0.15);
+    z-index: 200;                        /* above the overlay */
+    list-style: none;
+    margin: 0;
+    overflow-y: auto;
   }
 
   .nav-links.open { transform: translateX(0); }
 
+  .nav-links li {
+    width: 100%;
+    list-style: none;
+  }
+
   .nav-links a {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
+    color: var(--purple);
+    text-decoration: none;
+    display: block;
+    padding: 8px 0;
+    width: 100%;
   }
 
   .nav-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(42, 27, 74, 0.3);
+    background: rgba(42, 27, 74, 0.4);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
-    z-index: 150;
+    z-index: 150;                        /* below the nav-links panel */
   }
 
-  .nav-overlay.open { opacity: 1; pointer-events: auto; }
+  .nav-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 </style>
