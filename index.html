@@ -1127,26 +1127,87 @@
   }
 
   @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .nav-logo { font-size: 15px; }
-    .about-facts { grid-template-columns: 1fr; }
-    .project { flex: 0 0 280px; }
-    .timeline-tab { font-size: 16px; padding: 14px 20px 14px 0; margin-right: 20px; }
+  .nav-logo { font-size: 15px; }
+  .about-facts { grid-template-columns: 1fr; }
+  .project { flex: 0 0 280px; }
+  .timeline-tab { font-size: 16px; padding: 14px 20px 14px 0; margin-right: 20px; }
+
+  /* Hamburger toggle */
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 75%;
+    max-width: 320px;
+    background: var(--cream);
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 48px 32px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -12px 0 30px rgba(42, 27, 74, 0.1);
+    z-index: 200;
   }
+
+  .nav-links.open { transform: translateX(0); }
+
+  .nav-links a {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 27, 74, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 150;
+  }
+
+  .nav-overlay.open { opacity: 1; pointer-events: auto; }
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--purple);
+  z-index: 210;
+  position: relative;
+}
+
+.nav-toggle svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
 </style>
 </head>
 <body>
 
 <nav id="nav">
   <div class="nav-logo">hitika <span>dalwadi</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Journey</a></li>
-    <li><a href="#work">Projects</a></li>
-    <li><a href="#writing">Blog</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" onclick="closeMenu()">about</a></li>
+    <li><a href="#experience" onclick="closeMenu()">journey</a></li>
+    <li><a href="#work" onclick="closeMenu()">work</a></li>
+    <li><a href="#writing" onclick="closeMenu()">writing</a></li>
+    <li><a href="#skills" onclick="closeMenu()">skills</a></li>
+    <li><a href="#contact" onclick="closeMenu()">contact</a></li>
   </ul>
+  <div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
 </nav>
 
 <!-- ───────────── HERO ───────────── -->
@@ -1178,10 +1239,10 @@
       </div>
       <div class="about-body">
         <p>
-          I believe AI can absorb a lot of mundane work and allow us to focus on complex problems solving, but that promise only holds if we can audit what these systems produce at every step and understand the consequences of their outputs. Recently, my team and I won the Red Hat and Open Accelerator Hackathon where we built a MCP governance system that inspects incoming request. That pushed me further, and I have since built a prompt injection detecting system using NLP techniques.
+          I believe AI can absorb a lot of mundane work and allow us to focus on complex problems solving, but that promise only holds true if we can audit what these systems produce at every step and understand the consequences of their outputs. Recently, my team and I won the Red Hat and Open Accelerator Hackathon where we built a MCP governance system that inspects incoming request. That pushed me further, and I built a prompt injection detecting system using NLP techniques.
         </p>
         <p>
-           I bring a strong technical foundation, a security-first mindset, and experience handling complex data at scale. Alongside my work in healthcare CRM, I have gained exposure to research and problem-solving through a research internship at ISRO (Indian Space Research Organisation).  I regularly read technical blogs and podcasts to stay current with the evolving landscape of AI and data systems. To document and reflect on my learning, I maintain a Substack where I share insights and practical takeaways .
+           I bring a strong technical foundation, a security-first mindset, and experience handling complex data at scale. Along with my work in healthcare CRM, I have gained exposure to research and problem-solving through a research internship at ISRO (Indian Space Research Organisation).  I regularly read technical blogs and podcasts to stay current with the evolving landscape of AI and data systems. To document and reflect on my learning, I maintain a Substack where I share insights and practical takeaways .
         </p>
         </div>
       </div>
