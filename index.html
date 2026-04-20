@@ -1665,6 +1665,20 @@
     });
     hint.style.transition = 'opacity 0.3s';
   }
+  
+function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+    document.getElementById('nav-overlay').classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('nav-links').classList.remove('open');
+    document.getElementById('nav-overlay').classList.remove('open');
+  }
+
+  // Expose to global scope so onclick handlers can find them
+  window.toggleMenu = toggleMenu;
+  window.closeMenu = closeMenu;
 </script>
 
 </body>
