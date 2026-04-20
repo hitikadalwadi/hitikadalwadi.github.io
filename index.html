@@ -180,7 +180,7 @@
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(72px, 13vw, 160px);
+    font-size: clamp(72px, 13vw, 90px);
     line-height: 0.9;
     letter-spacing: -0.055em;
     color: var(--purple);
@@ -308,7 +308,7 @@
 
   /* ───────────── SECTIONS ───────────── */
   section {
-    padding: 140px 0;
+    padding: 50px 0;
     position: relative;
   }
 
@@ -331,7 +331,7 @@
   .section-title {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(42px, 6vw, 78px);
+    font-size: clamp(42px, 6vw, 45px);
     letter-spacing: -0.04em;
     color: var(--purple);
     line-height: 1;
@@ -430,7 +430,7 @@
     scroll-snap-type: x mandatory;
     scroll-padding-left: 48px;
     scrollbar-width: thin;
-    scrollbar-color: var(--purple-soft) var(--cream-deep);
+    scrollbar-color: var(--purple) var(--cream-deep);
   }
 
   .projects-scroll::-webkit-scrollbar {
@@ -441,7 +441,7 @@
     border-radius: 100px;
   }
   .projects-scroll::-webkit-scrollbar-thumb {
-    background: var(--purple-soft);
+    background: var(--purple);
     border-radius: 100px;
   }
   .projects-scroll::-webkit-scrollbar-thumb:hover {
@@ -490,7 +490,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.15em;
@@ -511,13 +511,15 @@
   .project h3 {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 24px;
+    font-size: 19px;
     color: var(--purple);
     letter-spacing: -0.025em;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     line-height: 1.2;
     position: relative;
     z-index: 2;
+    padding-right: 56px;
+    min-height: 40px;
   }
 
   .project h3 em {
@@ -530,10 +532,9 @@
     font-size: 14px;
     line-height: 1.6;
     color: var(--purple-mid);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     position: relative;
     z-index: 2;
-    flex-grow: 1;
   }
 
   .project-stack {
@@ -542,6 +543,7 @@
     gap: 6px;
     position: relative;
     z-index: 2;
+    margin-top: auto; 
   }
 
   .stack-pill {
@@ -549,8 +551,8 @@
     font-size: 10px;
     padding: 4px 10px;
     border: 1px solid var(--line-strong);
-    border-radius: 100px;
-    color: var(--purple-mid);
+    border-radius: 0px;
+    color: var(--purple);
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
@@ -935,7 +937,7 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--#004aad);
+    color: var(--purple);
     background: transparent;
     border: none;
     border-radius: 0px;
@@ -975,29 +977,29 @@
   .skill-pill .c-tl {
     width: 50%; height: 50%;
     top: 0; left: 0;
-    border-top: 2px solid var(--accent);
-    border-left: 2px solid var(--accent);
+    border-top: 2px solid var(--purple);
+    border-left: 2px solid var(--purple);
     border-radius: 0px 0 0 0;
   }
   .skill-pill .c-tr {
     width: 50%; height: 50%;
     top: 0; right: 0;
-    border-top: 2px solid var(--accent);
-    border-right: 2px solid var(--accent);
+    border-top: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
     border-radius: 0 0px 0 0;
   }
   .skill-pill .c-bl {
     width: 50%; height: 50%;
     bottom: 0; left: 0;
-    border-bottom: 2px solid var(--accent);
-    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--purple);
+    border-left: 2px solid var(--purple);
     border-radius: 0 0 0 0px;
   }
   .skill-pill .c-br {
     width: 50%; height: 50%;
     bottom: 0; right: 0;
-    border-bottom: 2px solid var(--accent);
-    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
     border-radius: 0 0 0px 0;
   }
 
@@ -1139,12 +1141,12 @@
 <nav id="nav">
   <div class="nav-logo">hitika <span>dalwadi</span></div>
   <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#experience">journey</a></li>
-    <li><a href="#work">work</a></li>
-    <li><a href="#writing">writing</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Journey</a></li>
+    <li><a href="#work">Projects</a></li>
+    <li><a href="#writing">Blog</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -1159,11 +1161,6 @@
     <p class="hero-tagline">
       AI/ML Engineer | MS in Artificial Intelligence | Ex-ZS | Ex-ISRO
     </p>
-    <div class="hero-ctas">
-      <a href="mailto:dalwadi.hi@northeastern.edu" class="btn btn-secondary">
-        Get in touch
-      </a>
-    </div>
   </div>
 </header>
 
@@ -1367,7 +1364,7 @@
         <!-- Robot Control System -->
         <a class="project" href="https://github.com/hitikadalwadi/Autonomous-Parcel-Sortation-For-Warehouse">
           <div class="project-link">↗</div>
-          <h3>Autonomous Robot Control Through Centralized Image Processing</h3>
+          <h3>Autonomous Robot Control Via Centralized Image Processing</h3>
           <p>
             Flipkart GRID 3.0: National Finalist - Top 10 India
           </p>
@@ -1415,7 +1412,7 @@
 <section id="writing">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Writing & Research.</h2>
+      <h2 class="section-title">Blogs & Research.</h2>
     </div>
 
     <div class="writing-wrap">
@@ -1431,7 +1428,7 @@
       <div class="writing-list">
 
         <a class="post" href="https://hitikadalwadi.substack.com/p/what-inference-time-scaling-is-and" target="_blank" rel="noopener">
-          <div class="post-num">Essay 01</div>
+          <div class="post-num">SUBSTACK</div>
           <div>
             <h4>What Inference Time Scaling Is and Why It Matters</h4>
             <p>PRMs, ORMs, Best-of-N, MCTS, and why NVIDIA NVLink infrastructure matters for where test-time compute is going.</p>
@@ -1440,7 +1437,7 @@
         </a>
 
         <a class="post" href="https://hitikadalwadi.substack.com/p/understanding-terminologies-in-ai" target="_blank" rel="noopener">
-          <div class="post-num">Essay 02</div>
+          <div class="post-num">SUBSTACK</div>
           <div>
             <h4>Understanding Terminologies in AI Ecosystem</h4>
             <p>AI is everywhere, but understanding how the pieces fit together is hard. A visual map that turns overwhelming jargon into a coherent picture.</p>
@@ -1449,7 +1446,7 @@
         </a>
 
         <a class="post" href="https://link.springer.com/chapter/10.1007/978-981-99-0483-9_2" target="_blank" rel="noopener">
-          <div class="post-num">Paper 01</div>
+          <div class="post-num">SPRINGER</div>
           <div>
             <h4>Master-Slave Communication Using MQTT Protocol</h4>
             <p>A Springer-published paper on using MQTT for real-time coordination between a central system and a swarm of mobile robots. Central image processing drives navigation and sends signals over a local Wi-Fi network.</p>
@@ -1538,7 +1535,7 @@
     </div>
 
     <p class="contact-huge">
-      Have a role, a project, or an idea? <em>Let's</em> <a href="mailto:dalwadi.hi@northeastern.edu">talk</a>.
+      Got an idea, a role, or a question?<em>Let's</em> <a href="mailto:dalwadi.hi@northeastern.edu">talk</a>.
     </p>
 
     <div class="contact-links">
