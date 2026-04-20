@@ -1104,6 +1104,37 @@
     transform: translateY(0);
   }
 
+  /* ── Hamburger toggle (hidden on desktop, shown via media query) ── */
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--purple);
+    z-index: 310;
+    position: relative;
+  }
+
+  .nav-toggle svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  /* ── Close icon inside hamburger (hidden by default) ── */
+  .nav-toggle .icon-close { display: none; }
+  .nav-toggle .icon-hamburger { display: block; }
+  .nav-toggle.active .icon-close { display: block; }
+  .nav-toggle.active .icon-hamburger { display: none; }
+
+  /* ── Full-screen mobile menu overlay ── */
+  .mobile-menu {
+    display: none;
+  }
+
   /* ───────────── RESPONSIVE ───────────── */
   @media (max-width: 960px) {
     .container, nav { padding: 22px 28px; }
@@ -1121,62 +1152,69 @@
     .timeline-content { grid-column: 2; }
     .post { grid-template-columns: 1fr auto; gap: 16px; }
     .post-num { display: none; }
-    .nav-links {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 75%;
-      max-width: 320px;
-      background: #f4efe6;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 100px 32px 48px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      box-shadow: -12px 0 30px rgba(42, 27, 74, 0.15);
-      z-index: 200;
-      list-style: none;
-      margin: 0;
-      overflow-y: auto;
+
+    /* ── Show hamburger button, hide desktop nav links ── */
+    .nav-toggle {
+      display: flex;
     }
-    .nav-links.open { transform: translateX(0); }
-    .nav-links li { width: 100%; list-style: none; }
-    .nav-links a { font-size: 20px; font-weight: 500; display: block; padding: 8px 0; width: 100%; }
-    .nav-toggle { display: flex; }
-    .nav-overlay {
+
+    .nav-links {
+      display: none !important;
+    }
+
+    /* ── Full-screen overlay menu ── */
+    .mobile-menu {
+      display: block;
       position: fixed;
       inset: 0;
-      background: rgba(42, 27, 74, 0.4);
+      z-index: 300;
+      background: rgba(244, 239, 230, 0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      z-index: 150;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+
+      /* Center the links vertically and left-align */
+      padding: 120px 40px 60px;
+      overflow-y: auto;
     }
-    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-menu ul li a {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--purple);
+      text-decoration: none;
+      display: block;
+      padding: 10px 0;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu ul li a:hover {
+      color: var(--accent);
+    }
+
     section { padding: 90px 0; }
     .section-header { flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
     .section-kicker { display: none; }
     .hero-decoration { width: 260px; height: 260px; right: -40px; top: 25%; }
   }
-  .nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  color: var(--purple);
-  z-index: 210;
-  position: relative;
- }
-
-.nav-toggle svg {
-  width: 24px;
-  height: 24px;
-  display: block;
- }
 
   @media (max-width: 600px) {
   .nav-logo { font-size: 15px; }
@@ -1191,23 +1229,38 @@
 
 <nav id="nav">
   <div class="nav-logo">hitika <span>dalwadi</span></div>
-  <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+    <svg class="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <line x1="4" y1="7" x2="20" y2="7"/>
       <line x1="4" y1="12" x2="20" y2="12"/>
       <line x1="4" y1="17" x2="20" y2="17"/>
     </svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="6" y1="6" x2="18" y2="18"/>
+      <line x1="18" y1="6" x2="6" y2="18"/>
+    </svg>
   </button>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#about" onclick="closeMenu()">about</a></li>
-    <li><a href="#experience" onclick="closeMenu()">journey</a></li>
-    <li><a href="#work" onclick="closeMenu()">work</a></li>
-    <li><a href="#writing" onclick="closeMenu()">writing</a></li>
-    <li><a href="#skills" onclick="closeMenu()">skills</a></li>
-    <li><a href="#contact" onclick="closeMenu()">contact</a></li>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">journey</a></li>
+    <li><a href="#work">work</a></li>
+    <li><a href="#writing">writing</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
-<div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
+
+<!-- Full-screen mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Journey</a></li>
+    <li><a href="#work" onclick="closeMenu()">Work</a></li>
+    <li><a href="#writing" onclick="closeMenu()">Writing</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+</div>
 
 <!-- ───────────── HERO ───────────── -->
 <header class="hero">
@@ -1675,13 +1728,19 @@
   }
   
 function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('open');
-    document.getElementById('nav-overlay').classList.toggle('open');
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('nav-toggle');
+    menu.classList.toggle('open');
+    btn.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
   }
 
   function closeMenu() {
-    document.getElementById('nav-links').classList.remove('open');
-    document.getElementById('nav-overlay').classList.remove('open');
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('nav-toggle');
+    menu.classList.remove('open');
+    btn.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   // Expose to global scope so onclick handlers can find them
